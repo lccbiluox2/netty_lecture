@@ -1,4 +1,4 @@
-package com.shengsiyuan.netty.secondexample;
+package com.shengsiyuan.netty.course6;
 
 
 import io.netty.channel.ChannelInitializer;
@@ -11,7 +11,7 @@ import io.netty.handler.codec.string.StringEncoder;
 import io.netty.util.CharsetUtil;
 
 
-public class MyClientInitializer extends ChannelInitializer<SocketChannel> {
+public class MyServerInitializer extends ChannelInitializer<SocketChannel> {
 
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
@@ -21,6 +21,6 @@ public class MyClientInitializer extends ChannelInitializer<SocketChannel> {
         pipeline.addLast(new LengthFieldPrepender(4));
         pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));
         pipeline.addLast(new StringEncoder(CharsetUtil.UTF_8));
-        pipeline.addLast(new MyClientHandler());
+        pipeline.addLast(new MyServerHandler());
     }
 }
