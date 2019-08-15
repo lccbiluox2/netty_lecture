@@ -1,4 +1,4 @@
-package com.shengsiyuan.netty.fourthexample;
+package com.shengsiyuan.netty.course10;
 
 
 import io.netty.bootstrap.ServerBootstrap;
@@ -8,6 +8,8 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
+
+import java.net.InetSocketAddress;
 
 public class MyServer {
 
@@ -19,9 +21,9 @@ public class MyServer {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class).
                     handler(new LoggingHandler(LogLevel.INFO)).
-                    childHandler(new MyServerInitializer());
+                    childHandler(new WebSocketChannelInitializer());
 
-            ChannelFuture channelFuture = serverBootstrap.bind(8899).sync();
+            ChannelFuture channelFuture = serverBootstrap.bind(new InetSocketAddress(8899)).sync();
             channelFuture.channel().closeFuture().sync();
         } finally {
             bossGroup.shutdownGracefully();

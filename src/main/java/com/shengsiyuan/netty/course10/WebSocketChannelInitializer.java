@@ -1,4 +1,4 @@
-package com.shengsiyuan.netty.fifthexample;
+package com.shengsiyuan.netty.course10;
 
 
 import io.netty.channel.ChannelInitializer;
